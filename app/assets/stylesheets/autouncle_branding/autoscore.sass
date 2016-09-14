@@ -1,0 +1,168 @@
+/******************************************************/
+/*              Default AutoScore Styling              */
+/*******************************************************/
+
+.score_wrapper
+  .inner
+    span
+      display: none
+  &.inline
+    display: inline-block
+    vertical-align: middle
+.scoreimg, .score_label_img, .au_rating_score_and_label
+  span
+    display: none
+
+$score-height: 16px
+$score-width: 81px
+
+// Score (only dots)
+.scoreimg, .score_label_img
+  width: $score-width
+  height: $score-height
+  background:
+    repeat: no-repeat
+  @each $locale in $locales
+    &.locale_#{$locale}
+      background-image: image-url('autoscore_labels/labels_and_scores_small_flat.#{$locale}.png')
+      +hidpi(2)
+        background-image: image-url('autoscore_labels/labels_and_scores_small_flat.#{$locale}@2x.png')
+        background-size: (324px/2) (192px/2)
+  @each $value in 5, 4, 3, 2, 1, 0
+    &.value#{$value}
+      background-position: 0 (($value - 5)*$score-height)
+
+// Only Label
+.score_label_img
+  background:
+    position: -$score-width 0
+  @each $value in 5, 4, 3, 2, 1, 0
+    &.value#{$value}
+      background-position: -$score-width (($value - 5)*$score-height)
+
+// Score and label (large)
+$large-score-width: 100px
+$large-score-height: 45px
+.au_rating_score_and_label
+  width: $large-score-width
+  height: $large-score-height
+  background:
+    repeat: no-repeat
+  @each $locale in $locales
+    &.locale_#{$locale}
+      background-image: image-url('autoscore_labels/labels_and_scores_flat.#{$locale}.png')
+      +hidpi(2)
+        background-image: image-url('autoscore_labels/labels_and_scores_flat.#{$locale}@2x.png')
+        background-size: $large-score-width ($large-score-height*6)
+  @each $value in 5, 4, 3, 2, 1, 0
+    &.value#{$value}
+      background-position: 0 (($value - 5)*$large-score-height)
+
+// Score and label (small)
+// Markup should consist of both score and label tags
+.au_rating_score_and_label_small
+  .scoreimg
+    margin-bottom: 4px
+
+// Only label (large)
+.au_rating_label_large
+  $large-label-width: 100px
+  $large-label-height: 23px
+  width: $large-label-width
+  height: $large-label-height
+  background:
+    repeat: no-repeat
+  @each $locale in $locales
+    &.locale_#{$locale}
+      background-image: image-url('autoscore_labels/labels_and_scores_flat.#{$locale}.png')
+      +hidpi(2)
+        background-image: image-url('autoscore_labels/labels_and_scores_flat.#{$locale}@2x.png')
+        background-size: $large-label-width ($large-score-height*6)
+  @each $value in 5, 4, 3, 2, 1, 0
+    &.value#{$value}
+      background-position: 0 (($value - 5)*$large-score-height - 22px)
+
+// Only score (large)
+.au_rating_score_large
+  $large-label-width: 100px
+  $large-label-height: 23px
+  width: $large-label-width
+  height: $large-label-height
+  background:
+    repeat: no-repeat
+  @each $locale in $locales
+    &.locale_#{$locale}
+      background-image: image-url('autoscore_labels/labels_and_scores_flat.#{$locale}.png')
+      +hidpi(2)
+        background-image: image-url('autoscore_labels/labels_and_scores_flat.#{$locale}@2x.png')
+        background-size: $large-label-width ($large-score-height*6)
+  @each $value in 5, 4, 3, 2, 1, 0
+    &.value#{$value}
+      background-position: 0 (($value - 5)*$large-score-height)
+
+.au-rating-score-flat
+  $au-rating-score-flat-width: 146px
+  $au-rating-score-flat-height: 30px
+  @at-root html.no-svg &
+    background-image: image-url('autoscore_labels/autoscore_scores_new.png')
+  background-image: image-url('autoscore_labels/autoscore_scores_new.svg')
+  background-size: 100% auto
+  @for $value from 1 through 5
+    &.value#{$value}
+      background-position: 0 ((5-$value) * -100%)
+  &.size144px
+    width: 144px
+    height: 26px
+  &.size72px
+    width: 72px
+    height: 13px
+  &.size83px
+    @at-root html.no-svg &
+      background-image: image-url('autoscore_labels/autoscore_scores_new_83px.png')
+    width: 83px
+    height: 83px/$au-rating-score-flat-width * $au-rating-score-flat-height
+
+// Text-based label
+.au-rating-label-flat
+  +cool_font_basic
+  text-transform: uppercase
+  font-size: 12px
+  white-space: nowrap
+  @for $value from 1 through 5
+    &.value#{$value}
+      color: map-get($price_rating_colors, $value)
+  &.locale_de.value2, &.locale_de-AT.value2, &.locale_it.value4
+    font-size: 11px
+
+.au-rating-score-and-label-flat
+  .au-rating-score-flat, .au-rating-label-flat
+    display: inline-block
+    vertical-align: middle
+  text-align: center
+
+
+// Simple flat rating with light text label
+$light-score-height: 15px
+$light-score-width: 82px
+.score-label-light
+  &--wrapper
+    text-align: center
+    line-height: normal
+  &--label
+    display: block
+    text-transform: uppercase
+    font-size: 16px
+    margin-bottom: 3px
+    @for $value from 5 through 0
+      &.value#{$value}
+        color: map-get($price_rating_colors, $value)
+  &--score
+    width: $light-score-width
+    height: $light-score-height
+    display: inline-block
+    background:
+      image: image-url('new_listing/autoscore_scores.png')
+      repeat: no-repeat
+    @for $value from 5 through 0
+      &.value#{$value}
+        background-position: 0 (($value - 5)*$light-score-height)
