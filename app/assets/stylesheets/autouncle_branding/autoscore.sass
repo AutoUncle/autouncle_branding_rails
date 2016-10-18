@@ -139,30 +139,3 @@ $large-score-height: 45px
     display: inline-block
     vertical-align: middle
   text-align: center
-
-
-// Simple flat rating with light text label
-$light-score-height: 15px
-$light-score-width: 82px
-.score-label-light
-  &--wrapper
-    text-align: center
-    line-height: normal
-  &--label
-    display: block
-    text-transform: uppercase
-    font-size: 16px
-    margin-bottom: 3px
-    @for $value from 5 through 0
-      &.value#{$value}
-        color: map-get($price_rating_colors, $value)
-  &--score
-    width: $light-score-width
-    height: $light-score-height
-    display: inline-block
-    background:
-      image: image-url('new_listing/autoscore_scores.png')
-      repeat: no-repeat
-    @for $value from 5 through 0
-      &.value#{$value}
-        background-position: 0 (($value - 5)*$light-score-height)

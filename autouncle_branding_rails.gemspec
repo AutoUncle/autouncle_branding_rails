@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.email       = ["crstian@autouncle.com"]
   s.homepage    = "https://www.autouncle.dk/"
   s.summary     = "SASS Based branding for AutoUncle"
-  s.description = "SASS Based branding for AutoUncle"
+  s.description = "SASS & Assets branding for AutoUncle"
   s.license     = "MIT"
 
   s.files = Dir["{app,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
