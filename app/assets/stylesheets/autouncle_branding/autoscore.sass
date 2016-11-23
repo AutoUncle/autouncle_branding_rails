@@ -115,7 +115,10 @@ $large-score-height: 45px
     height: 26px
   &.size72px
     width: 72px
-    height: 13px
+    height: 72px/$au-rating-score-flat-width * $au-rating-score-flat-height
+  &.size60px
+    width: 60px
+    height: 60px/$au-rating-score-flat-width * $au-rating-score-flat-height
   &.size83px
     @at-root html.no-svg &
       background-image: image-url('autoscore_labels/autoscore_scores_new_83px.png')
